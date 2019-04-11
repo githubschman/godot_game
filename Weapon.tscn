@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Weapon.gd" type="Script" id=1]
+[ext_resource path="res://art/icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="Weapon" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 0
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_group_": true
+}
+NAME = "Weapon"
+CAPACITY = null
+isActive = false
+
+[node name="MainSprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 0.581356, -0.0138237 )
+scale = Vector2( 0.0590001, 0.0585667 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Material", "Visibility" ]
+
+[node name="WeaponCollision" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 0, -1.43051e-06 )
+scale = Vector2( 2.30769, 2.30769 )
+shape = SubResource( 1 )
+
+[node name="WeaponVisibility" type="VisibilityNotifier2D" parent="." index="2"]
+
+position = Vector2( -1.90735e-06, 0.209198 )
+scale = Vector2( 3, 3 )
+rect = Rect2( -10, -10, 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Node" type="Node" parent="." index="3"]
+
+
