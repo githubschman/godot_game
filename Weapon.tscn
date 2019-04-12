@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Weapon" type="RigidBody2D"]
+[node name="Weapon" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -56,7 +56,5 @@ position = Vector2( -1.90735e-06, 0.209198 )
 scale = Vector2( 3, 3 )
 rect = Rect2( -10, -10, 20, 20 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Node" type="Node" parent="." index="3"]
 
 

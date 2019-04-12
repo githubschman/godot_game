@@ -76,6 +76,7 @@ func _on_MobTimer_timeout():
 	mob.set_linear_velocity(Vector2(rand_range(mob.MIN_SPEED, mob.MAX_SPEED), 0).rotated(direction))
 	
 func _on_StartTimer_timeout():
+	# commented out to test other stuff
 	# $MobTimer.start()
 	$ScoreTimer.start()
 

@@ -27,16 +27,21 @@ func _input(event):
 	if inventory.size() > 1:
 		if event.is_pressed() && event.is_action("ui_change_weapon"):
 			# hide current active weapon
-			changingWeapon = true
 			inventory[activeWeapon - 1].hide()
 			activeWeapon = (activeWeapon + 1) % inventory.size()
 			# show updated active weapon
 			inventory[activeWeapon - 1].show()
 			inventory[activeWeapon - 1].position = position
-			changingWeapon = false
 			emit_signal("update_active_weapon")
 
 func _process(delta):
+	var weapon = null
+	if inventory.size():
+		weapon = inventory[activeWeapon - 1]
+		weapon.position = position
+		if Input.is_action_pressed("ui_shoot"):
+			weapon.shoot()
+
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
@@ -63,11 +68,9 @@ func _process(delta):
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
 		$AnimatedSprite.flip_v = velocity.y > 0
-	
-	if inventory.size():
-		inventory[activeWeapon - 1].position = position
-		if Input.is_action_pressed("ui_shoot"):
-			inventory[activeWeapon - 1].shoot()
+
+	# TODO add more obvs
+
 
 
 func _on_Player_body_entered(body):
