@@ -29,10 +29,26 @@ func _process(delta):
 
 func shoot():
 	print('BOOOM!')
-
-	#var bullet = Bullet.instance()
-	#add_child(bullet)
-	#var direction = $Weapon.rotation + PI/2
-	#bullet.rotation = direction
-	#bullet.set_linear_velocity(Vector2(rand_range(bullet.MIN_SPEED, bullet.MAX_SPEED), 0).rotated(direction))
+	if CAPACITY > 0:
+		CAPACITY = CAPACITY - 1
+		var Player = get_node("/root/Main/Player")
+		var HUD = get_node("/root/Main/HUD")
+		if CAPACITY == 0:
+			equipped = false
+			var newWeapon = Player.activeWeapon - 1
+			Player.inventory.erase(Player.inventory[Player.activeWeapon - 1])
+			Player.activeWeapon - newWeapon
+			hide()
+			if Player.inventory.size() && Player.inventory[Player.activeWeapon - 1]:
+				Player.inventory[Player.activeWeapon - 1].show()
+				HUD.update_active_weapon(Player.inventory[Player.activeWeapon - 1].NAME, Player.inventory[Player.activeWeapon - 1].CAPACITY)
+			# else:
+				# hide active weapon label
+		else:
+			HUD.update_active_weapon(NAME, CAPACITY)
+			#var bullet = Bullet.instance()
+			#add_child(bullet)
+			#var direction = $Weapon.rotation + PI/2
+			#bullet.rotation = direction
+			#bullet.set_linear_velocity(Vector2(rand_range(bullet.MIN_SPEED, bullet.MAX_SPEED), 0).rotated(direction))
 	

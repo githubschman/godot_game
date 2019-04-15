@@ -24,7 +24,13 @@ func start(pos):
 	$Collision.disabled = false
 
 func _input(event):
-	if inventory.size() > 1:
+	var weapon = null
+	if inventory.size():
+		weapon = inventory[activeWeapon - 1]
+		weapon.position = position
+		if Input.is_action_pressed("ui_shoot"):
+			if weapon.CAPACITY > 0:
+				weapon.shoot()
 		if event.is_pressed() && event.is_action("ui_change_weapon"):
 			# hide current active weapon
 			inventory[activeWeapon - 1].hide()
@@ -34,13 +40,6 @@ func _input(event):
 			emit_signal("update_active_weapon")
 
 func _process(delta):
-	var weapon = null
-	if inventory.size():
-		weapon = inventory[activeWeapon - 1]
-		weapon.position = position
-		if Input.is_action_pressed("ui_shoot"):
-			weapon.shoot()
-
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1

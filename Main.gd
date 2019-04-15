@@ -50,12 +50,13 @@ func player_equip():
 
 func player_change_active_weapon():
 	var newIndex = $Player.activeWeapon - 1
-	$HUD.update_active_weapon($Player.inventory[newIndex].NAME)
+	$HUD.update_active_weapon($Player.inventory[newIndex].NAME, $Player.inventory[newIndex].CAPACITY)
 
 func add_weapons_to_scene(weaponNum):
 	# this is just for testing!
 	for i in range (0, weaponNum):
 		var weapon = Weapon.instance()
+		weapon.CAPACITY = 30
 		weapon.NAME = "test_weapon_" + str(i)
 		add_child(weapon)
 		$WeaponPath/WeaponSpawnLocation.set_offset(randi())

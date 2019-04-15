@@ -30,8 +30,8 @@ func update_inventory(text):
 	var inventoryText = "Weapons: " + str(text)
 	$InventoryLabel.text = inventoryText
 
-func update_active_weapon(text):
-	var activeWeaponText = "Active Weapon: " + str(text)
+func update_active_weapon(weapon_name, weapon_capacity):
+	var activeWeaponText = "Active Weapon: " + str(weapon_name) + " " + str(weapon_capacity)
 	$ActiveWeaponLabel.text = activeWeaponText
 
 func _on_StartButton_pressed():
