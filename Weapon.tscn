@@ -36,6 +36,7 @@ __meta__ = {
 NAME = "Weapon"
 CAPACITY = null
 isActive = false
+equipped = false
 
 [node name="MainSprite" type="Sprite" parent="." index="0"]
 

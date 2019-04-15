@@ -31,7 +31,6 @@ func _input(event):
 			activeWeapon = (activeWeapon + 1) % inventory.size()
 			# show updated active weapon
 			inventory[activeWeapon - 1].show()
-			inventory[activeWeapon - 1].position = position
 			emit_signal("update_active_weapon")
 
 func _process(delta):
@@ -80,6 +79,7 @@ func _on_Player_body_entered(body):
 		emit_signal("hit")
 	elif ("Weapon" in bodyName):
 		if (!inventory.has(body)):
+			body.equipped = true
 			inventory.insert(inventory.size(), body)
 			if (activeWeapon == null):
 				activeWeapon = 1
