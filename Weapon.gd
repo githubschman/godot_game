@@ -1,8 +1,13 @@
 extends RigidBody2D
 
+export (PackedScene) var Bullet
+export (PackedScene) var TestMob
+
 # weapon class vars
 export (String) var NAME
 export (int) var CAPACITY
+export (int) var MIN_SPEED = 150
+export (int) var MAX_SPEED = 250 # test values....
 
 export (bool) var isActive = false
 export (bool) var equipped = false
@@ -48,7 +53,14 @@ func shoot():
 			HUD.update_active_weapon(NAME, CAPACITY)
 			#var bullet = Bullet.instance()
 			#add_child(bullet)
-			#var direction = $Weapon.rotation + PI/2
+			#var direction = Player.rotation + PI/2
 			#bullet.rotation = direction
-			#bullet.set_linear_velocity(Vector2(rand_range(bullet.MIN_SPEED, bullet.MAX_SPEED), 0).rotated(direction))
-	
+			#bullet.set_linear_velocity(Vector2(rand_range(MIN_SPEED, MAX_SPEED), 0).rotated(direction))
+			var mob = TestMob.instance()
+			add_child(mob)
+			var direction = Player.rotation + PI/2
+			mob.position = Player.position
+			# add some randomness to the direction
+			direction += rand_range(-PI/4, PI/4)
+			mob.rotation = direction
+			mob.set_linear_velocity(Vector2(rand_range(mob.MIN_SPEED, mob.MAX_SPEED), 0).rotated(direction))

@@ -39,7 +39,7 @@ func _input(event):
 			inventory[activeWeapon - 1].show()
 			emit_signal("update_active_weapon")
 
-func _process(delta):
+func _process(delta):	
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
@@ -69,8 +69,6 @@ func _process(delta):
 
 	# TODO add more obvs
 
-
-
 func _on_Player_body_entered(body):
 	var bodyName = body.get_name()
 	if ("Mob" in bodyName):
@@ -85,3 +83,5 @@ func _on_Player_body_entered(body):
 			else:
 				body.hide()
 			emit_signal("equip")
+	else:
+		print('possible bullet?')

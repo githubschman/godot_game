@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Weapon.gd" type="Script" id=1]
-[ext_resource path="res://art/icon.png" type="Texture" id=2]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Mob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/icon.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -33,8 +35,12 @@ _sections_unfolded = [ "Collision" ]
 __meta__ = {
 "_edit_group_": true
 }
+Bullet = ExtResource( 2 )
+TestMob = ExtResource( 3 )
 NAME = "Weapon"
 CAPACITY = null
+MIN_SPEED = 150
+MAX_SPEED = 250
 isActive = false
 equipped = false
 
@@ -42,7 +48,7 @@ equipped = false
 
 position = Vector2( 0.581356, -0.0138237 )
 scale = Vector2( 0.0590001, 0.0585667 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Animation", "Material", "Visibility" ]
 
 [node name="WeaponCollision" type="CollisionShape2D" parent="." index="1"]
