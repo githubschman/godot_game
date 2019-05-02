@@ -7,61 +7,26 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-
-[node name="Weapon" type="RigidBody2D" index="0"]
-
-input_pickable = false
-collision_layer = 1
+[node name="Weapon" type="RigidBody2D"]
+position = Vector2( 1.10803, 0.291992 )
 collision_mask = 0
-mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
 gravity_scale = 0.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
-__meta__ = {
-"_edit_group_": true
-}
 Bullet = ExtResource( 2 )
 TestMob = ExtResource( 3 )
 NAME = "Weapon"
-CAPACITY = null
-MIN_SPEED = 150
-MAX_SPEED = 250
-isActive = false
-equipped = false
 
-[node name="MainSprite" type="Sprite" parent="." index="0"]
-
-position = Vector2( 0.581356, -0.0138237 )
-scale = Vector2( 0.0590001, 0.0585667 )
+[node name="MainSprite" type="Sprite" parent="."]
+position = Vector2( -1.02458, 0.815891 )
+scale = Vector2( 0.0324816, 0.032243 )
 texture = ExtResource( 4 )
-_sections_unfolded = [ "Animation", "Material", "Visibility" ]
 
-[node name="WeaponCollision" type="CollisionShape2D" parent="." index="1"]
-
-position = Vector2( 0, -1.43051e-06 )
+[node name="WeaponCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.291991 )
 scale = Vector2( 2.30769, 2.30769 )
 shape = SubResource( 1 )
 
-[node name="WeaponVisibility" type="VisibilityNotifier2D" parent="." index="2"]
-
-position = Vector2( -1.90735e-06, 0.209198 )
-scale = Vector2( 3, 3 )
-rect = Rect2( -10, -10, 20, 20 )
-_sections_unfolded = [ "Transform" ]
-
+[node name="WeaponVisibility" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.145999, 0.939166 )
+scale = Vector2( 1.67145, 1.67145 )
 

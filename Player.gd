@@ -14,6 +14,8 @@ var inventory = []
 func _ready():
 	hide()
 	screensize = get_viewport_rect().size
+	rotation = PI
+	rotation_degrees = 0
 	
 func start(pos):
 	# TODO: move to reset properties?
@@ -43,29 +45,30 @@ func _process(delta):
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
+		rotation_degrees = 0
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
+		rotation_degrees = 180 #
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
+		rotation_degrees = 90 #
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
+		rotation_degrees = -90
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
-		
+
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screensize.x)
 	position.y = clamp(position.y, 0, screensize.y)
 
-	if velocity.x != 0:
-		$AnimatedSprite.animation = "right"
-		$AnimatedSprite.flip_v = false
-		$AnimatedSprite.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite.animation = "up"
-		$AnimatedSprite.flip_v = velocity.y > 0
+	# if velocity.x != 0:
+		# $AnimatedSprite.animation = "right"
+	# elif velocity.y != 0:
+		# $AnimatedSprite.animation = "up"
 
 	# TODO add more obvs
 
@@ -83,5 +86,3 @@ func _on_Player_body_entered(body):
 			else:
 				body.hide()
 			emit_signal("equip")
-	else:
-		print('possible bullet?')

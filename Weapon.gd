@@ -24,16 +24,13 @@ func _process(delta):
 	if Player.inventory.size():	
 		if equipped:
 			position = Player.position
-			if Player.velocity.x != 0:
+			rotation = Player.rotation
+			# if Player.velocity.x != 0:
 				# $MainSprite.animation = "right"
-				$MainSprite.flip_v = false
-				$MainSprite.flip_h = Player.velocity.x < 0
-			elif Player.velocity.y != 0:
+			# elif Player.velocity.y != 0:
 				# $MainSprite.animation = "up"
-				$MainSprite.flip_v = Player.velocity.y > 0
 
 func shoot():
-	print('BOOOM!')
 	if CAPACITY > 0:
 		CAPACITY = CAPACITY - 1
 		var Player = get_node("/root/Main/Player")
@@ -49,18 +46,11 @@ func shoot():
 				HUD.update_active_weapon(Player.inventory[Player.activeWeapon - 1].NAME, Player.inventory[Player.activeWeapon - 1].CAPACITY)
 			# else:
 				# hide active weapon label
-		else:
+		else: #
 			HUD.update_active_weapon(NAME, CAPACITY)
-			#var bullet = Bullet.instance()
-			#add_child(bullet)
-			#var direction = Player.rotation + PI/2
-			#bullet.rotation = direction
-			#bullet.set_linear_velocity(Vector2(rand_range(MIN_SPEED, MAX_SPEED), 0).rotated(direction))
-			var mob = TestMob.instance()
-			add_child(mob)
-			var direction = Player.rotation + PI/2
-			mob.position = Player.position
-			# add some randomness to the direction
-			direction += rand_range(-PI/4, PI/4)
-			mob.rotation = direction
-			mob.set_linear_velocity(Vector2(rand_range(mob.MIN_SPEED, mob.MAX_SPEED), 0).rotated(direction))
+			var bullet = Bullet.instance()
+			get_parent().add_child(bullet)
+			var direction = Player.rotation
+			bullet.global_position = global_position
+			bullet.VELOCITY = Vector2(rand_range(MIN_SPEED, MAX_SPEED), 0).rotated(direction)
+			

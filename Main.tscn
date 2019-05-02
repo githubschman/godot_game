@@ -9,143 +9,70 @@
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=7]
 
 [sub_resource type="Curve2D" id=1]
-
-bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1.97066, 3.83263, 0, 0, 0, 0, 2.80293, -0.42411, 0, 0, 0, 0, 1002.09, -0.388687, 0, 0, 0, 0, 1004.73, 737.876, 0, 0, 0, 0, 0.865729, 739.078, 0, 0, 0, 0, 1.83435, 3.60587, 0, 0, 0, 0, 1.97066, 3.83263 )
 }
 
 [sub_resource type="Curve2D" id=2]
-
-bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1001.95, 2.24898, 0, 0, 0, 0, -0.611542, 3.04742, 0, 0, 0, 0, -1.02066, 0.48938, 0, 0, 0, 0, 1001.95, 2.24898 )
 }
 
 [node name="Main" type="Node"]
-
 script = ExtResource( 1 )
 Mob = ExtResource( 2 )
 Weapon = ExtResource( 3 )
 
-[node name="ColorRect" type="ColorRect" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -3.0
 margin_top = 3.0
 margin_right = 997.0
 margin_bottom = 737.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 color = Color( 0.253036, 0.286864, 0.402344, 1 )
-_sections_unfolded = [ "Grow Direction", "Rect" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 
-[node name="MobTimer" type="Timer" parent="." index="2"]
-
-process_mode = 1
+[node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
-one_shot = false
-autostart = false
 
-[node name="ScoreTimer" type="Timer" parent="." index="3"]
+[node name="ScoreTimer" type="Timer" parent="."]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
-
-[node name="StartTimer" type="Timer" parent="." index="4"]
-
-process_mode = 1
+[node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-autostart = false
 
-[node name="StartPosition" type="Position2D" parent="." index="5"]
-
+[node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 498.919, 439.925 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="HUD" parent="." index="6" instance=ExtResource( 5 )]
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="7"]
-
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -8.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="." index="8"]
-
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -5.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
 
-[node name="MobPath" type="Path2D" parent="." index="9"]
-
-editor/display_folded = true
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+[node name="MobPath" type="Path2D" parent="."]
 curve = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" index="0"]
-
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( 1.97066, 3.83263 )
 rotation = -1.08357
-offset = 0.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="WeaponPath" type="Path2D" parent="." index="10"]
-
+[node name="WeaponPath" type="Path2D" parent="."]
 editor/display_folded = true
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 2 )
-_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="WeaponSpawnLocation" type="PathFollow2D" parent="WeaponPath" index="0"]
-
+[node name="WeaponSpawnLocation" type="PathFollow2D" parent="WeaponPath"]
 position = Vector2( 1001.95, 2.24898 )
 rotation = 3.1408
-offset = 0.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
 
 [connection signal="equip" from="Player" to="." method="player_equip"]
-
 [connection signal="hit" from="Player" to="." method="player_hit"]
-
 [connection signal="update_active_weapon" from="Player" to="." method="player_change_active_weapon"]
-
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
-
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
-
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
-
 [connection signal="start_game" from="HUD" to="." method="new_game"]
-
-

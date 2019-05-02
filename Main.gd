@@ -31,7 +31,7 @@ func cleanUpScene():
 	$MobTimer.stop()
 	var colNode = get_node("/root/Main/Player/Collision")
 	colNode.disabled = true
-	get_tree().call_group(SceneTree.GROUP_CALL_DEFAULT,"Weapon","queue_free")
+	# get_tree().call_group(SceneTree.GROUP_CALL_DEFAULT,"Weapon","queue_free")
 	
 func player_hit():
 	if time < 60:

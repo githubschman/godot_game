@@ -1,9 +1,12 @@
 extends RigidBody2D
 
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+export (int) var VELOCITY
+
+func _process(delta):
+    move(delta)
+
+func move(delta):
+    global_position += VELOCITY * delta
 
 func _on_Visibility_screen_exited():
 	queue_free()
