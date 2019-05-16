@@ -5,56 +5,24 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-
-[node name="Bullet" type="RigidBody2D" index="0"]
-
+[node name="Bullet" type="RigidBody2D"]
 position = Vector2( 1.64951, -2.89349 )
 scale = Vector2( 2.40122, 2.40122 )
-input_pickable = false
-collision_layer = 1
 collision_mask = 0
-mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
 gravity_scale = 0.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Applied Forces", "Collision", "Linear" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="MainSprite" type="Sprite" parent="." index="0"]
-
+[node name="MainSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Material", "Visibility" ]
 
-[node name="BulletCollision" type="CollisionShape2D" parent="." index="1"]
-
+[node name="BulletCollision" type="CollisionShape2D" parent="."]
 position = Vector2( -0.186961, 0.00107792 )
 scale = Vector2( 1.00503, 0.991003 )
 shape = SubResource( 1 )
 
-[node name="BulletVisibility" type="VisibilityEnabler2D" parent="." index="2"]
+[node name="BulletVisibility" type="VisibilityEnabler2D" parent="."]
 
-rect = Rect2( -10, -10, 20, 20 )
-pause_animations = true
-freeze_bodies = true
-pause_particles = true
-pause_animated_sprites = true
-process_parent = false
-physics_process_parent = false
-
-
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

@@ -32,25 +32,16 @@ func _process(delta):
 
 func shoot():
 	if CAPACITY > 0:
-		CAPACITY = CAPACITY - 1
 		var Player = get_node("/root/Main/Player")
 		var HUD = get_node("/root/Main/HUD")
 		if CAPACITY == 0:
 			equipped = false
 			var newWeapon = Player.activeWeapon - 1
 			Player.inventory.erase(Player.inventory[Player.activeWeapon - 1])
-			Player.activeWeapon - newWeapon
+			Player.activeWeapon = newWeapon
 			hide()
 			if Player.inventory.size() && Player.inventory[Player.activeWeapon - 1]:
 				Player.inventory[Player.activeWeapon - 1].show()
 				HUD.update_active_weapon(Player.inventory[Player.activeWeapon - 1].NAME, Player.inventory[Player.activeWeapon - 1].CAPACITY)
 			# else:
 				# hide active weapon label
-		else: #
-			HUD.update_active_weapon(NAME, CAPACITY)
-			var bullet = Bullet.instance()
-			get_parent().add_child(bullet)
-			var direction = Player.rotation
-			bullet.global_position = global_position
-			bullet.VELOCITY = Vector2(rand_range(MIN_SPEED, MAX_SPEED), 0).rotated(direction)
-			

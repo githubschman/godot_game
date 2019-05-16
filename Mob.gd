@@ -9,3 +9,8 @@ func _ready():
 	
 func _on_Visibility_screen_exited():
 	queue_free()
+
+
+func _on_Mob_body_entered(body):
+	var bodyName = body.get_name()
+	print(bodyName)

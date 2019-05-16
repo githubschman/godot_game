@@ -2,6 +2,7 @@ extends Node
 
 export (PackedScene) var Mob
 export (PackedScene) var Weapon
+export (PackedScene) var Bullet
 
 var time = 60
 var livesNum = 3
@@ -78,7 +79,7 @@ func _on_MobTimer_timeout():
 	
 func _on_StartTimer_timeout():
 	# commented out to test other stuff
-	# $MobTimer.start()
+	$MobTimer.start()
 	$ScoreTimer.start()
 
 func _on_ScoreTimer_timeout():
@@ -87,3 +88,21 @@ func _on_ScoreTimer_timeout():
 		win_game()
 	$HUD.update_time(time)
 
+func _input(event):
+	var weapon = null
+	if $Player.inventory.size():
+		weapon = $Player.inventory[$Player.activeWeapon - 1]
+		weapon.position = $Player.position
+		if Input.is_action_pressed("ui_shoot"):
+			if weapon.CAPACITY > 0:
+				self.shoot()
+
+func shoot():
+	var ACTIVE_WEAPON = $Player.inventory[$Player.activeWeapon - 1]
+	ACTIVE_WEAPON.CAPACITY = ACTIVE_WEAPON.CAPACITY - 1
+	$HUD.update_active_weapon(ACTIVE_WEAPON.NAME, ACTIVE_WEAPON.CAPACITY)
+	var bullet = Bullet.instance()
+	get_parent().add_child(bullet)
+	var direction = $Player.rotation
+	bullet.global_position = ACTIVE_WEAPON.global_position
+	bullet.VELOCITY = Vector2(rand_range(ACTIVE_WEAPON.MIN_SPEED, ACTIVE_WEAPON.MAX_SPEED), 0).rotated(direction)

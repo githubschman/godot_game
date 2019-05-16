@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Weapon.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
-[ext_resource path="res://art/House In a Forest Loop.ogg" type="AudioStream" id=6]
-[ext_resource path="res://art/gameover.wav" type="AudioStream" id=7]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://art/House In a Forest Loop.ogg" type="AudioStream" id=7]
+[ext_resource path="res://art/gameover.wav" type="AudioStream" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -22,6 +23,7 @@ _data = {
 script = ExtResource( 1 )
 Mob = ExtResource( 2 )
 Weapon = ExtResource( 3 )
+Bullet = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -3.0
@@ -30,7 +32,7 @@ margin_right = 997.0
 margin_bottom = 737.0
 color = Color( 0.253036, 0.286864, 0.402344, 1 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 5 )]
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -44,14 +46,14 @@ one_shot = true
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 498.919, 439.925 )
 
-[node name="HUD" parent="." instance=ExtResource( 5 )]
+[node name="HUD" parent="." instance=ExtResource( 6 )]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 volume_db = -8.0
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = -5.0
 
 [node name="MobPath" type="Path2D" parent="."]

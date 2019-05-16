@@ -30,9 +30,6 @@ func _input(event):
 	if inventory.size():
 		weapon = inventory[activeWeapon - 1]
 		weapon.position = position
-		if Input.is_action_pressed("ui_shoot"):
-			if weapon.CAPACITY > 0:
-				weapon.shoot()
 		if event.is_pressed() && event.is_action("ui_change_weapon"):
 			# hide current active weapon
 			inventory[activeWeapon - 1].hide()
@@ -74,6 +71,7 @@ func _process(delta):
 
 func _on_Player_body_entered(body):
 	var bodyName = body.get_name()
+	print(bodyName)
 	if ("Mob" in bodyName):
 		body.hide()
 		emit_signal("hit")
